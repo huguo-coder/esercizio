@@ -25,4 +25,19 @@ def calcola_somma(n1: float, n2: float):
     risultato = n1 + n2
     return {"risultato": risultato}
     import random
+@app.get("/calcola")
+def calcola(n1: float, n2: float, op: str):
+    if op == "add":
+        risultato = n1 + n2
+    elif op == "sub":
+        risultato = n1 - n2
+    elif op == "mul":
+        risultato = n1 * n2
+    elif op == "div":
+        if n2 == 0:
+            return {"risultato": "Errore: divisione per zero"}
+        risultato = n1 / n2
+    else:
+        return {"risultato": "Operazione non valida"}
 
+    return {"risultato": risultato}
