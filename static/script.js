@@ -37,6 +37,24 @@ async function calcolasomma() {
     document.getElementById('risultato-somma').innerText =  "Risultato: " + json.risultato;
 }
 
+async function calcola() {
+    const n1 = document.getElementById('num1').value;
+    const n2 = document.getElementById('num2').value;
+    const op = document.getElementById('operazione').value;
+
+    if (n1 === "" || n2 === "") {
+        alert("Inserisci entrambi i numeri!");
+        return;
+    }
+
+    const res = await fetch(`/calcola?n1=${n1}&n2=${n2}&op=${op}`);
+    const json = await res.json();
+
+    document.getElementById('risultato').innerText = "Risultato: " + json.risultato;
+}
+
+// collega bottone
+document.getElementById('btn-calcola').addEventListener('click', calcola);
 // Colleghiamo i bottoni alle funzioni
 document.getElementById('btn-ora').addEventListener('click', aggiornaOra);
 document.getElementById('btn-saluto').addEventListener('click', inviaSaluto);
